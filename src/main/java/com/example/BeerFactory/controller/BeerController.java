@@ -9,15 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(path = "api")
-@Controller
+@RestController
 @RequiredArgsConstructor
 @Slf4j
 public class BeerController {
     private final BeerService beerService;
 
-    @PostMapping(path = "v1/beer")
+    @PostMapping(value = "api/v1/beer")
     public BeerEntity postBeer(@RequestBody BeerDTO beer){
         log.debug(beer.toString());
         var response = beerService.postBeer(beer);
