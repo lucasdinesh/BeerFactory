@@ -17,6 +17,7 @@ public class BeerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long id;
     private String beerName;
     private String upc;
@@ -25,6 +26,13 @@ public class BeerEntity {
     private Style beerStyle;
     private Long quantityOnHand;
     private String price;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
     private UUID uuid = UUID.randomUUID();
+
+    @PrePersist
+    public void autofill() {
+        this.setUuid(UUID.randomUUID());
+    }
 
 }
